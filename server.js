@@ -1,5 +1,5 @@
 const express = require("express");
-const puppeteer = require("puppeteer-core");
+const puppeteer = require("puppeteer");
 
 const app = express();
 app.use(express.json());
@@ -13,7 +13,7 @@ app.post("/", async (req, res) => {
   try {
     const browser = await puppeteer.launch({
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      executablePath: "/usr/bin/google-chrome",
+      headless: "new"
     });
 
     const page = await browser.newPage();
